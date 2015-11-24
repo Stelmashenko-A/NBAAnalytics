@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace NBAAnalytics
+namespace NBAAnalytics.JSONGameData
 {
     public class GameDay
     {

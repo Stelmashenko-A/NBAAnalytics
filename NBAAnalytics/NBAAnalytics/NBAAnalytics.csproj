@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Raven.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.0.30000\lib\net45\Raven.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.0.30000\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
@@ -42,16 +51,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Broadcaster.cs" />
-    <Compile Include="DataMiner.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameDay.cs" />
-    <Compile Include="Header.cs" />
-    <Compile Include="Lp.cs" />
-    <Compile Include="Media.cs" />
-    <Compile Include="Prd.cs" />
+    <Compile Include="Analytics\Finder.cs" />
+    <Compile Include="Analytics\IJoiner.cs" />
+    <Compile Include="Analytics\NBAAnalizer.cs" />
+    <Compile Include="Analytics\NBATeamsJoiner.cs" />
+    <Compile Include="IMiner.cs" />
+    <Compile Include="Analytics\ShortMatchResultsMiner.cs" />
+    <Compile Include="Cities\CityMiner.cs" />
+    <Compile Include="Cities\CityPopulation.cs" />
+    <Compile Include="Cities\CityPopulationCsvParser.cs" />
+    <Compile Include="DataPrepaer.cs" />
+    <Compile Include="Cities\FileLineMiner.cs" />
+    <Compile Include="Analytics\FullMatchResult.cs" />
+    <Compile Include="Cities\ICsvParser.cs" />
+    <Compile Include="Cities\ILineMiner.cs" />
+    <Compile Include="Cities\IParser.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="JSONGameData\Broadcaster.cs" />
+    <Compile Include="JSONGameData\NBADataMiner.cs" />
+    <Compile Include="JSONGameData\Game.cs" />
+    <Compile Include="JSONGameData\GameDay.cs" />
+    <Compile Include="JSONGameData\Header.cs" />
+    <Compile Include="JSONGameData\Lp.cs" />
+    <Compile Include="JSONGameData\Media.cs" />
+    <Compile Include="JSONGameData\Prd.cs" />
+    <Compile Include="Match.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JSONGameData\TeamJson.cs" />
+    <Compile Include="RavenMiner.cs" />
+    <Compile Include="Score.cs" />
+    <Compile Include="Analytics\ShortMatchResult.cs" />
     <Compile Include="Team.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

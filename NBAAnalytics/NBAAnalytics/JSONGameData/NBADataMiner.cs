@@ -3,23 +3,34 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Web.Script.Serialization;
+using NBAAnalytics.Analytics;
 
-namespace NBAAnalytics
+namespace NBAAnalytics.JSONGameData
 {
-    public class DataMiner
+    public class NBADataMiner : IMiner<GameDay>
     {
-        public IList<GameDay> Mine(DateTime dateTime, int days)
+
+        private DateTime _dateTime;
+        private readonly int _daysBefore;
+
+        public NBADataMiner(DateTime dateTime, int daysBefore)
+        {
+            _dateTime = dateTime;
+            _daysBefore = daysBefore;
+        }
+
+        public IList<GameDay> Mine()
         {
             var gameDays = new List<GameDay>();
-            for (var i = 0; i < days; i++)
+            for (var i = 0; i < _daysBefore; i++)
             {
-                var gameDay = GetRequest(dateTime);
+                var gameDay = GetRequest(_dateTime);
                 if (gameDay != null)
                 {
                     gameDays.Add(gameDay);
                 }
 
-                dateTime = dateTime.Subtract(new TimeSpan(1, 0, 0, 0));
+                _dateTime = _dateTime.Subtract(new TimeSpan(1, 0, 0, 0));
             }
             return gameDays;
         }
@@ -35,7 +46,7 @@ namespace NBAAnalytics
             return date.Year.ToString() + date.Month + date.Day;
         }
 
-        public GameDay GetRequest(DateTime date)
+        protected GameDay GetRequest(DateTime date)
         {
             var request = WebRequest.Create(BuildUrl(date));
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace NBAAnalytics
+namespace NBAAnalytics.JSONGameData
 {
     public class Game
     {
@@ -39,6 +39,6 @@ namespace NBAAnalytics
         public Lp Lp { get; set; }
 
         [DataMember(Name = "teams")]
-        public List<Team> Teams { get; set; }
+        public List<TeamJson> Teams { get; set; }
     }
 }
